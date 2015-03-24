@@ -18,6 +18,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
+error_reporting(E_ALL);
+            ini_set('display_errors', 'On');
+
 // For ODM fresh install
 // Admin table
 
@@ -107,9 +110,8 @@ $query = "CREATE TABLE {$dbprefix}data (
   KEY data_idx (id,owner),
   KEY id (id),
   KEY id_2 (id),
-  KEY publishable (publishable),
-  KEY description (description)
-) ENGINE = MYISAM";
+  KEY publishable (publishable)
+) ENGINE=MyISAM";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 
@@ -309,8 +311,7 @@ $query = "CREATE TABLE IF NOT EXISTS `{$dbprefix}settings` (
 `value` VARCHAR( 255 ) NOT NULL ,
 `description` VARCHAR( 255 ) NOT NULL ,
 `validation` VARCHAR( 255 ) NOT NULL ,
-PRIMARY KEY ( `id` ) ,
-UNIQUE ( `name` )
+PRIMARY KEY ( `id` )
 ) ENGINE = MYISAM";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
