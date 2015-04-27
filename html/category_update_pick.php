@@ -9,15 +9,7 @@
                    <?php echo msg('choose')?> <?php echo msg('category')?>
                     <select name="item">
                         <?php
-                        // query to get a list of users
-                        $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category ORDER BY name";
-                        $stmt = $pdo->prepare($query);
-                        $stmt->execute();
-                        $result = $stmt->fetchAll();
-
-                        foreach($result as $row) {
-                            echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
-                        }
+                        createCategorySelectItems();
                         ?>
                     </select>
                 </label>

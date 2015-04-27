@@ -923,3 +923,24 @@ function redirect_visitor($url='')
     }
 
 }
+
+
+function createCategorySelectItems($parent_id = null, $level = 0) {
+    $pdo = $GLOBALS['pdo'];
+    $query = null;
+    if (!$parent_id) {
+        $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE parent_id IS NULL OR parent_id = 0 ORDER BY name";
+    } else {
+        $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE parent_id = " . $parent_id . " ORDER BY name";
+    }
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+
+    foreach($result as $row) {
+        $dashes = str_repeat('—', $level);
+        echo '<option value="' . $row['id'] . '">' . $dashes . ' ' . $row['name'] . '</option>';
+        createCategorySelectItems($row['id'], $level+1);
+    }
+}

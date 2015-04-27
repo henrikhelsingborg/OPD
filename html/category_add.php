@@ -10,6 +10,18 @@
             </div>
 
             <div class="large-12 columns">
+                <label>
+                    Förälder:
+                    <select name="parent_id">
+                        <option value="">Ingen förälder</option>
+                        <?php
+                        createCategorySelectItems();
+                        ?>
+                    </select>
+                </label>
+            </div>
+
+            <div class="large-12 columns">
                 <button class="button success" type="submit" name="submit" value="Add Category"><?php echo msg('button_add_category')?></button>
                 <button class="button" type="Submit" name="cancel" value="Cancel"><?php echo msg('button_cancel')?></button>
             </div>

@@ -22,6 +22,18 @@
                         <input type="hidden" name="id" value="<?=$row['id']?>">
                     </label>
                 </div>
+
+                <div class="large-12 columns">
+                    <label>
+                        Förälder<?php echo strtolower(msg('category'))?>
+                        <select name="parent_id">
+                            <option value="">Ingen förälder</option>
+                            <?php
+                            createCategorySelectItems();
+                            ?>
+                        </select>
+                    </label>
+                </div>
             <?php endforeach; ?>
 
             <div class="large-12 columns">

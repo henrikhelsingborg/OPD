@@ -54,9 +54,12 @@ elseif(isset($_REQUEST['submit']) && $_REQUEST['submit']=='Add Category')
         exit;
     }
 
-    $query = "INSERT INTO {$GLOBALS['CONFIG']['db_prefix']}category (name) VALUES (:category)";
+    $query = "INSERT INTO {$GLOBALS['CONFIG']['db_prefix']}category (name, parent_id) VALUES (:category, :parent_id)";
     $stmt = $pdo->prepare($query);
-    $stmt->execute(array(':category' => $_REQUEST['category']));
+    $stmt->execute(array(
+        ':category' => $_REQUEST['category'],
+        ':parent_id' => $_REQUEST['parent_id']
+    ));
 
     // back to main page
     $last_message = urlencode(msg('message_category_successfully_added'));
@@ -218,10 +221,11 @@ elseif(isset($_REQUEST['updatecategory']))
     }
     $id = (int) $_REQUEST['id'];
 
-    $query = "UPDATE {$GLOBALS['CONFIG']['db_prefix']}category SET name = :name where id = :id";
+    $query = "UPDATE {$GLOBALS['CONFIG']['db_prefix']}category SET name = :name, parent_id = :parent_id where id = :id";
     $stmt = $pdo->prepare($query);
     $stmt->execute(array(
         ':name' => $_REQUEST['name'],
+        'parent_id' => $_REQUEST['parent_id'],
         ':id' => $id
     ));
 
