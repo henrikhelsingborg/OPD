@@ -77,6 +77,7 @@ $query = "
 CREATE TABLE {$dbprefix}category (
   id int(11) unsigned NOT NULL auto_increment,
   name varchar(255) NOT NULL default '',
+  parent_id int(11) NULL,
   PRIMARY KEY  (id)
 ) ENGINE = MYISAM";
 $stmt = $pdo->prepare($query);
