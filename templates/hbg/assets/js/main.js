@@ -1,0 +1,1 @@
+$('.main-nav li.active').parents('ul').addClass('active');

@@ -11,16 +11,7 @@
         <nav class="main-nav large-12 columns show-for-medium-up">
             <ul class="main-nav-list">
                 <li><a href="out.php">Alla</a></li>
-                <?php
-                    $query = "SELECT name FROM {$GLOBALS['CONFIG']['db_prefix']}category ORDER BY name ASC";
-                    $stmt = $pdo->prepare($query);
-                    $stmt->execute();
-                    $result = $stmt->fetchAll();
-
-                    foreach ($result as $row) :
-                ?>
-                <li><a href="search.php?submit=submit&amp;sort_by=id&amp;where=category&amp;sort_order=asc&amp;keyword=<?=$row['name']?>&amp;exact_phrase=on&amp;direct=true"><?=$row['name']?></a></li>
-                <?php endforeach; ?>
+                <?php createMenu(); ?>
             </ul>
         </nav>
     </div>

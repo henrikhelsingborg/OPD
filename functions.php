@@ -924,23 +924,97 @@ function redirect_visitor($url='')
 
 }
 
-
+/**
+ * Builds the select options tree for category selector
+ * @param  integer $parent_id What parent_id to look for
+ * @param  integer $level     Tree level to start at
+ * @return void               Echoes the html structure
+ */
 function createCategorySelectItems($parent_id = null, $level = 0) {
     $pdo = $GLOBALS['pdo'];
     $query = null;
+
+    // Set the query based on weather parent_id is given or not
     if (!$parent_id) {
         $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE parent_id IS NULL OR parent_id = 0 ORDER BY name";
     } else {
         $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE parent_id = " . $parent_id . " ORDER BY name";
     }
 
+    // Execute the query
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     $result = $stmt->fetchAll();
 
+    // Loop the result
     foreach($result as $row) {
         $dashes = str_repeat('—', $level);
         echo '<option value="' . $row['id'] . '">' . $dashes . ' ' . $row['name'] . '</option>';
         createCategorySelectItems($row['id'], $level+1);
     }
+}
+
+/**
+ * Builds the menu
+ * @param  integer $parent_id What parent_id to look for
+ * @param  integer $level     Tree level to start at
+ * @return void               Echoes the html structure
+ */
+function createMenu($parent_id = null, $level = 0) {
+    $pdo   = $GLOBALS['pdo'];
+    $url   = $_SERVER['REQUEST_URI'];
+    $query = null;
+    $open  = false;
+
+    // Set the query based on weather parent_id is given or not
+    if (!$parent_id) {
+        $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE parent_id IS NULL OR parent_id = 0 ORDER BY name";
+    } else {
+        $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE parent_id = " . $parent_id . " ORDER BY name";
+    }
+
+    // Execute the query
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+
+    if (strpos($url, 'search.php') > -1) {
+        $url = parse_url($url)['query'];
+        parse_str($url, $query);
+
+        if (isset($query['where']) && $query['where'] == 'category' && isset($query['keyword']) && in_array_r($query['keyword'], $result)) {
+            $open = true;
+        }
+    } else {
+        $query = array('keyword' => null);
+    }
+
+    // Loop the result
+    $class_list = '';
+    if ($parent_id > 0 && !$open) $class_list .= 'level-' . $level . ' ';
+    if ($parent_id > 0 && $open) $class_list .= 'active ';
+    if (count($result) > 0) $class_list .= 'submenu ';
+
+    if ($parent_id > 0) echo '<ul class="' . $class_list . '">';
+
+    foreach($result as $row) {
+        $open_child = '';
+        if (in_array($query['keyword'], $row) && $level > 0) $open_child = 'class="active"';
+        if (in_array($query['keyword'], $row) && $level == 0) $open_child = 'class="active current"';
+        echo '<li ' . $open_child . '><a href="search.php?submit=submit&amp;sort_by=id&amp;where=category&amp;sort_order=asc&amp;keyword=' . $row['name'] . '&amp;exact_phrase=on&amp;direct=true">' . $row['name'] . '</a>';
+        createMenu($row['id'], $level+1);
+        echo '</li>';
+    }
+
+    if ($parent_id > 0) echo '</ul>';
+}
+
+function in_array_r($needle, $haystack, $strict = false) {
+    foreach ($haystack as $item) {
+        if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_r($needle, $item, $strict))) {
+            return true;
+        }
+    }
+
+    return false;
 }

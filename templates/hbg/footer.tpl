@@ -80,6 +80,10 @@
                 $('.off-canvas-wrap').toggleClass('move-right');
                 return false;
             });
+
+            $('.main-nav li.active').parents('ul').addClass('active');
+            $('.main-nav li.active').parents('li').last().addClass('current');
+            if ($('.main-nav .current').find('ul.submenu').length == 0) $('.main-nav .current').removeClass('current');
         });
     </script>
 </body>

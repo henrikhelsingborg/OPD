@@ -173,4 +173,25 @@ table.display thead th {
   max-width: 350px;
   height: auto; }
 
+.main-nav ul {
+  margin: 0;
+  margin-left: 15px;
+}
+
+.main-nav ul ul {
+  display: none;
+}
+
+.main-nav .main-nav-list li.current {
+  padding-left: 10px;
+}
+
+.main-nav ul.active {
+  display: block;
+}
+
+.main-nav li.active > ul {
+  display: block;
+}
+
 /*# sourceMappingURL=hbgdoc.css.map */
