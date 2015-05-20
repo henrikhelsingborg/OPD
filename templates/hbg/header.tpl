@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow" />
 
-    <title>HbgDoc - {$page_title}</title>
+    <title>{$g_title} - {$page_title}</title>
 
     <link rel="stylesheet" href="http://helsingborg.se/wp-content/themes/Helsingborg/css/app.css">
     <link rel="stylesheet" href="http://helsingborg.se/wp-content/themes/Helsingborg/css/normalize.css">
