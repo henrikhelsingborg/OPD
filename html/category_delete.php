@@ -22,6 +22,10 @@
                         <td><?=$row['name']?></td>
                     </tr>
                     <tr>
+                        <td>Flytta alla filer till papperskorgen</td>
+                        <td><input type="checkbox" name="remove-files" value="true"></td>
+                    </tr>
+                    <tr class="move-files">
                         <td><?php echo msg('label_reassign_to');?></td>
                         <td>
                             <select name="assigned_id">
@@ -47,3 +51,14 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('[name="remove-files"]').on('change', function (e) {
+            if ($(this).is(':checked')) {
+                $('.move-files').hide();
+            } else {
+                $('.move-files').show();
+            }
+        });
+    });
+</script>

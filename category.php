@@ -99,12 +99,28 @@ elseif(isset($_REQUEST['deletecategory']))
     $stmt->execute(array(':id' => $_REQUEST[id]));
 
     // Set all old category_id's to the new re-assigned category
-    $query = "UPDATE {$GLOBALS['CONFIG']['db_prefix']}data SET category = :assigned_id WHERE category = :id";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute(array(
-        ':assigned_id' => $_REQUEST['assigned_id'],
-        ':id' => $_REQUEST[id]
-    ));
+    if ($_REQUEST['remove-files'] == 'true') {
+        $query = "
+          UPDATE
+            {$GLOBALS['CONFIG']['db_prefix']}data
+          SET
+            publishable = 2
+          WHERE
+            category = :id
+        ";
+
+        $stmt = $pdo->prepare($query);
+        $stmt->execute(array(':id' => $_REQUEST[id]));
+
+        fmove($GLOBALS['CONFIG']['dataDir'] . $id . '.dat', $GLOBALS['CONFIG']['archiveDir'] . $id . '.dat');
+    } else {
+        $query = "UPDATE {$GLOBALS['CONFIG']['db_prefix']}data SET category = :assigned_id WHERE category = :id";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute(array(
+            ':assigned_id' => $_REQUEST['assigned_id'],
+            ':id' => $_REQUEST[id]
+        ));
+    }
 
     // back to main page
     $last_message = urlencode(msg('message_category_successfully_deleted') . ' id:' . $_REQUEST['id']);
