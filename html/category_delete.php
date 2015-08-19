@@ -30,14 +30,7 @@
                         <td>
                             <select name="assigned_id">
                                 <?php
-                                    $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE id != :item  ORDER BY name";
-                                    $stmt = $pdo->prepare($query);
-                                    $stmt->execute(array(':item' => $_REQUEST['item']));
-                                    $result = $stmt->fetchAll();
-
-                                    foreach($result as $row) {
-                                        echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
-                                    }
+                                    createCategorySelectItems();
                                     ?>
                             </select>
                         </td>

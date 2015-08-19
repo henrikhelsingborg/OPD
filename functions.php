@@ -953,6 +953,30 @@ function createCategorySelectItems($parent_id = null, $level = 0) {
         createCategorySelectItems($row['id'], $level+1);
     }
 }
+$GLOBALS['CategorySelectItems'] = null;
+function getCategorySelectItems($parent_id = null, $level = 0) {
+    $pdo = $GLOBALS['pdo'];
+    $query = null;
+
+    // Set the query based on weather parent_id is given or not
+    if (!$parent_id) {
+        $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE parent_id IS NULL OR parent_id = 0 ORDER BY name";
+    } else {
+        $query = "SELECT id, name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE parent_id = " . $parent_id . " ORDER BY name";
+    }
+
+    // Execute the query
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+
+    // Loop the result
+    foreach($result as $row) {
+        $dashes = str_repeat('—', $level);
+        $GLOBALS['CategorySelectItems'] .= '<option value="' . $row['id'] . '">' . $dashes . ' ' . $row['name'] . '</option>';
+        getCategorySelectItems($row['id'], $level+1);
+    }
+}
 
 /**
  * Builds the menu

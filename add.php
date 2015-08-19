@@ -138,6 +138,10 @@ if(!isset($_POST['submit']))
     $GLOBALS['smarty']->assign('avail_users', $users_array);
     $GLOBALS['smarty']->assign('avail_depts', $departments_array);
     $GLOBALS['smarty']->assign('cats_array', $cats_array);
+
+    getCategorySelectItems();
+    $GLOBALS['smarty']->assign('categoryPicker', $GLOBALS['CategorySelectItems']);
+
     $GLOBALS['smarty']->assign('dept_perms_array', $dept_perms_array);
     $GLOBALS['smarty']->assign('user_id', $_SESSION['uid']);
     $GLOBALS['smarty']->assign('db_prefix', $GLOBALS['CONFIG']['db_prefix']);

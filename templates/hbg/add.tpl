@@ -55,9 +55,7 @@
                 <label>
                     {$g_lang_category}
                     <select tabindex=2 name="category" >
-                        {foreach from=$cats_array item=cat}
-                            <option value="{$cat.id}">{$cat.name}</option>
-                        {/foreach}
+                        {$categoryPicker}
                     </select>
                 </label>
             </div>
