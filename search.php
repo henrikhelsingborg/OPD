@@ -103,7 +103,7 @@ else
             // Put all the category for each of the OBJ in the OBJ array into an array
             // Notice, the index of the OBJ_array and the category array are synchronized.
             case 'category':
-                $query .= "c.name $equate :keyword ";
+                $query .= "c.id $equate :keyword ";
                 break;
             // Put all the author name for each of the OBJ in the OBJ array into an array
             // Notice, the index of the OBJ_array and the author name array are synchronized.
@@ -207,7 +207,12 @@ else
     callPluginMethod('onSearch');
 
     if (isset($_REQUEST['where']) && $_REQUEST['where'] == 'category' && isset($_REQUEST['keyword']) && isset($_REQUEST['direct']) && $_REQUEST['direct'] == 'true') {
-        $GLOBALS['smarty']->assign('category', $_REQUEST['keyword']);
+        $query = "SELECT name FROM {$GLOBALS['CONFIG']['db_prefix']}category WHERE id = {$_REQUEST['keyword']} LIMIT 1";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $result = $stmt->fetch();
+
+        $GLOBALS['smarty']->assign('category', $result['name']);
     }
 
     sort_browser();
