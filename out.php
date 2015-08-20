@@ -40,6 +40,27 @@ sort_browser();
 
 $user_obj = new User($_SESSION['uid'], $pdo);
 
+// START: TA BORT FLERA FILER
+if (isset($_POST['action']) && $_POST['action'] == 'tmpdelete' && $user_obj->isAdmin()) {
+    foreach ($_POST['checkbox'] as $fileId) {
+        $query = "
+          UPDATE
+            {$GLOBALS['CONFIG']['db_prefix']}data
+          SET
+            publishable = 2
+          WHERE
+            id = :id
+        ";
+
+        $stmt = $pdo->prepare($query);
+        $result = $stmt->execute(array(':id' => $fileId));
+    }
+
+    $last_message = 'Valda filer flyttades till papperskorgen.';
+    header('Location: ' . $_SERVER['HTTP_REFERER'] . '?last_message=' . $last_message);
+}
+// SLUT: TA BORT FLERA FILER
+
 if ($user_obj->isAdmin())
 {
     $reviewIdCount = sizeof($user_obj->getAllRevieweeIds());
@@ -79,8 +100,13 @@ $user_perms = new UserPermission($_SESSION['uid'], $pdo);
 $file_id_array = $user_perms->getViewableFileIds(true);
 //$end_P = getmicrotime();
 
+if ($user_obj->isAdmin()) {
+    list_files($file_id_array, $user_perms, $GLOBALS['CONFIG']['dataDir'],true);
+    display_smarty_template('multiactions.tpl');
+} else {
+    list_files($file_id_array, $user_perms, $GLOBALS['CONFIG']['dataDir'],false);
+}
 
-list_files($file_id_array, $user_perms, $GLOBALS['CONFIG']['dataDir'],false);
 
 draw_footer();
 //Fb::log('<br> <b> Load Page Time: ' . (getmicrotime() - $start_time) . ' </b>');
