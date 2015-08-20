@@ -686,7 +686,7 @@ if( !defined('FileData_class') )
               UPDATE
                 {$GLOBALS['CONFIG']['db_prefix']}$this->TABLE_DATA
               SET
-                publishable = 0
+                publishable = 1
               WHERE
                 id = :id
             ";
