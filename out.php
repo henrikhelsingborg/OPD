@@ -41,19 +41,41 @@ sort_browser();
 $user_obj = new User($_SESSION['uid'], $pdo);
 
 // START: TA BORT FLERA FILER
-if (isset($_POST['action']) && $_POST['action'] == 'tmpdelete' && $user_obj->isAdmin()) {
-    foreach ($_POST['checkbox'] as $fileId) {
-        $query = "
-          UPDATE
-            {$GLOBALS['CONFIG']['db_prefix']}data
-          SET
-            publishable = 2
-          WHERE
-            id = :id
-        ";
+var_dump($_POST);
+if (isset($_POST['action-type']) && isset($_POST['action']) && $_POST['action'] == 'move-files' && $user_obj->isAdmin()) {
 
-        $stmt = $pdo->prepare($query);
-        $result = $stmt->execute(array(':id' => $fileId));
+    var_dump("Här");
+
+    if ($_POST['action-type'] == 'tmpdelete') {
+        foreach ($_POST['checkbox'] as $fileId) {
+            $query = "
+              UPDATE
+                {$GLOBALS['CONFIG']['db_prefix']}data
+              SET
+                publishable = 2
+              WHERE
+                id = :id
+            ";
+
+            $stmt = $pdo->prepare($query);
+            $result = $stmt->execute(array(':id' => $fileId));
+        }
+    } else {
+        $categoryId = $_POST['action-type'];
+
+        foreach ($_POST['checkbox'] as $fileId) {
+            $query = "
+              UPDATE
+                {$GLOBALS['CONFIG']['db_prefix']}data
+              SET
+                category = :cat
+              WHERE
+                id = :id
+            ";
+
+            $stmt = $pdo->prepare($query);
+            $result = $stmt->execute(array(':cat' => $categoryId, ':id' => $fileId));
+        }
     }
 
     $last_message = 'Valda filer flyttades till papperskorgen.';
@@ -102,6 +124,9 @@ $file_id_array = $user_perms->getViewableFileIds(true);
 
 if ($user_obj->isAdmin()) {
     list_files($file_id_array, $user_perms, $GLOBALS['CONFIG']['dataDir'],true);
+
+    getCategorySelectItems();
+    $GLOBALS['smarty']->assign('categoryPicker', $GLOBALS['CategorySelectItems']);
     display_smarty_template('multiactions.tpl');
 } else {
     list_files($file_id_array, $user_perms, $GLOBALS['CONFIG']['dataDir'],false);
