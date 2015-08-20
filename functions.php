@@ -303,6 +303,14 @@ function list_files($fileid_array, $userperms_obj, $dataDir, $showCheckBox = fal
 {
     global $pdo;
 
+    // IF ADMIN SHOW CHECKBOXES
+    $user_obj = new User($_SESSION['uid'], $pdo);
+    // Check to see if user is admin
+    if($user_obj->isAdmin())
+    {
+        $showCheckBox = true;
+    }
+
     //      print_r($fileid_array);exit;
     if(sizeof($fileid_array)==0 || !isset($fileid_array[0]))
     {
@@ -363,6 +371,7 @@ function list_files($fileid_array, $userperms_obj, $dataDir, $showCheckBox = fal
         $admin = array($userperms_obj->ADMIN_RIGHT, 'a');
         $rights = array($read, $write, $admin);
         $index_found = -1;
+
         //$rights[max][0] = admin, $rights[max-1][0]=write, ..., $right[min][0]=view
         //if $userright matches with $rights[max][0], then this user has all the rights of $rights[max][0]
         //and everything below it.
