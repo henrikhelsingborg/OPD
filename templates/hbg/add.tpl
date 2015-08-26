@@ -61,12 +61,6 @@
             </div>
         </div>
 
-        <div class="row" style="display:none;">
-            <div class="large-6 columns">
-                {include file='../common/_filePermissions.tpl'}
-            </div>
-        </div>
-
         <div class="row">
             <div class="large-6 columns">
                 <label>
