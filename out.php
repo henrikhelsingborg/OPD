@@ -41,10 +41,7 @@ sort_browser();
 $user_obj = new User($_SESSION['uid'], $pdo);
 
 // START: TA BORT FLERA FILER
-var_dump($_POST);
 if (isset($_POST['action-type']) && isset($_POST['action']) && $_POST['action'] == 'move-files' && $user_obj->isAdmin()) {
-
-    var_dump("Här");
 
     if ($_POST['action-type'] == 'tmpdelete') {
         foreach ($_POST['checkbox'] as $fileId) {
