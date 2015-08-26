@@ -54,7 +54,7 @@
                     <td>{$dept.name}</td>
                     <td><input type="radio" name="department_permission[{$dept.id}]" value="-1" {if $dept.rights eq '-1'}checked="checked"{/if} /></td>
                     <td><input type="radio" name="department_permission[{$dept.id}]" value="0" {if $dept.rights eq '0'}checked="checked"{/if}/></td>
-                    <td><input type="radio" name="department_permission[{$dept.id}]" value="1" {if $dept.rights eq 1 || !$dept.rights}checked="checked"{/if}  /></td>
+                    <td><input type="radio" name="department_permission[{$dept.id}]" value="1" {if $dept.rights eq 1 or !$dept.rights}checked="checked"{/if}  /></td>
                     <td><input type="radio" name="department_permission[{$dept.id}]" value="2" {if $dept.rights eq 2}checked="checked"{/if} {$noneselected}{$selected}/></td>
                     <td><input type="radio" name="department_permission[{$dept.id}]" value="3" {if $dept.rights eq 3}checked="checked"{/if} /></td>
                     <td><input type="radio" name="department_permission[{$dept.id}]" value="4" {if $dept.rights eq 4}checked="checked"{/if} /></td>
@@ -88,9 +88,9 @@
                     <td>{$user.first_name} {$user.last_name}</td>
                     <td><input type="radio" name="user_permission[{$user.id}]" value="-1" {if $user.rights eq '-1'}checked="checked"{/if} /></td>
                     <td><input type="radio" name="user_permission[{$user.id}]" value="1" {if $user.rights eq 1}checked="checked"{/if} /></td>
-                    <td><input type="radio" name="user_permission[{$user.id}]" value="2" {if $user.rights eq 2 || !$user.rights}checked="checked"{/if} /></td>
+                    <td><input type="radio" name="user_permission[{$user.id}]" value="2" {if $user.rights eq 2 or !$user.rights}checked="checked"{/if} /></td>
                     <td><input type="radio" name="user_permission[{$user.id}]" value="3" {if $user.rights eq 3}checked="checked"{/if} /></td>
-                    <td><input type="radio" name="user_permission[{$user.id}]" value="4" {if $user.rights eq 4 || ($user.id eq $user_id && $user.rights eq '') }checked="checked"{/if} /></td>
+                    <td><input type="radio" name="user_permission[{$user.id}]" value="4" {if $user.rights eq 4 or ($user.id eq $user_id && $user.rights eq '') }checked="checked"{/if} /></td>
                 </tr>
                 {/foreach}
             </tbody>
