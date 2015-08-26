@@ -124,7 +124,10 @@ if ($user_obj->isAdmin()) {
 
     getCategorySelectItems();
     $GLOBALS['smarty']->assign('categoryPicker', $GLOBALS['CategorySelectItems']);
-    display_smarty_template('multiactions.tpl');
+
+    if (!$GLOBALS['no-files']) {
+        display_smarty_template('multiactions.tpl');
+    }
 } else {
     list_files($file_id_array, $user_perms, $GLOBALS['CONFIG']['dataDir'],false);
 }

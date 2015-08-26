@@ -216,7 +216,22 @@ else
     }
 
     sort_browser();
-    list_files($search_result, $current_user_permission, $GLOBALS['CONFIG']['dataDir'], false,false);
+
+
+    if ($current_user->isAdmin()) {
+        list_files($search_result, $current_user_permission, $GLOBALS['CONFIG']['dataDir'],true, false);
+
+        getCategorySelectItems();
+        $GLOBALS['smarty']->assign('categoryPicker', $GLOBALS['CategorySelectItems']);
+
+        if (!$GLOBALS['no-files']) {
+            display_smarty_template('multiactions.tpl');
+        }
+    } else {
+        list_files($search_result, $current_user_permission, $GLOBALS['CONFIG']['dataDir'],false, false);
+    }
+
+    //list_files($search_result, $current_user_permission, $GLOBALS['CONFIG']['dataDir'], false,false);
 
     draw_footer();
     //echo '<br> <b> Load Page Time: ' . (getmicrotime() - $start_time) . ' </b>';

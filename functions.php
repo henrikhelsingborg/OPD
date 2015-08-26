@@ -302,6 +302,9 @@ function getmicrotime()
 function list_files($fileid_array, $userperms_obj, $dataDir, $showCheckBox = false, $rejectpage = false)
 {
     global $pdo;
+    global $GLOBALS;
+
+    $GLOBALS['no-files'] = false;
 
     // IF ADMIN SHOW CHECKBOXES
     $user_obj = new User($_SESSION['uid'], $pdo);
@@ -314,6 +317,7 @@ function list_files($fileid_array, $userperms_obj, $dataDir, $showCheckBox = fal
     //      print_r($fileid_array);exit;
     if(sizeof($fileid_array)==0 || !isset($fileid_array[0]))
     {
+        $GLOBALS['no-files'] = true;
         include('html/no-files-found.php');
         return -1;
     }
