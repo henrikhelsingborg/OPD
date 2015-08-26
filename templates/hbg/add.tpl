@@ -54,7 +54,7 @@
             <div class="large-6 columns">
                 <label>
                     {$g_lang_category}
-                    <select tabindex=2 name="category" >
+                    <select tabindex="2" name="category" >
                         {$categoryPicker}
                     </select>
                 </label>
@@ -63,7 +63,7 @@
 
         <div class="row" style="display:none;">
             <div class="large-6 columns">
-                {include file='../../templates/common/_filePermissions.tpl'}
+                {include file='../common/_filePermissions.tpl'}
             </div>
         </div>
 
