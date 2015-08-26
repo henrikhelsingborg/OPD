@@ -83,7 +83,7 @@ CREATE TABLE {$dbprefix}category (
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 
-$query = "INSERT INTO {$dbprefix}category VALUES (NULL, 'Övrigt')";
+$query = "INSERT INTO {$dbprefix}category (parent_id, name) VALUES (NULL, 'Övrigt')";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 
