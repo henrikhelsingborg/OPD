@@ -17,9 +17,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://helsingborg.se/wp-content/themes/Helsingborg/assets/img/icons/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="http://helsingborg.se/wp-content/themes/Helsingborg/assets/img/icons/apple-touch-icon-precomposed.png">
 
-    {include file='../../templates/common/head_include.tpl'}
+    {include file='../common/head_include.tpl'}
 
-    <link rel="stylesheet" href="/templates/hbg/assets/css/hbgdoc.css" type="text/css">
+    <link rel="stylesheet" href="{$g_base_url}/templates/hbg/assets/css/hbgdoc.css" type="text/css">
 </head>
 
 <body>
