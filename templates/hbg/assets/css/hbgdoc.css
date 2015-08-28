@@ -183,7 +183,7 @@ table.display thead th {
 }
 
 .main-nav .main-nav-list li.current {
-  padding-left: 10px;
+  padding-left: 17px;
 }
 
 .main-nav ul.active {
@@ -192,6 +192,13 @@ table.display thead th {
 
 .main-nav li.active > ul {
   display: block;
+}
+
+
+.main-nav .main-nav-list li.current.has-childs > a::before,
+.main-nav .main-nav-list li.has-childs > a::before {
+  margin-top: 3px;
+  left: -19px;
 }
 
 /*# sourceMappingURL=hbgdoc.css.map */

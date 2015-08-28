@@ -1030,20 +1030,22 @@ function createMenu($parent_id = null, $level = 0) {
     $class_list = '';
     if ($parent_id > 0 && !$open) $class_list .= 'level-' . $level . ' ';
     if ($parent_id > 0 && $open) $class_list .= 'active ';
-    if (count($result) > 0) $class_list .= 'submenu ';
+    if (count($result) > 0) {
+        $class_list .= 'submenu ';
 
-    if ($parent_id > 0) echo '<ul class="' . $class_list . '">';
+        if ($parent_id > 0) echo '<ul class="' . $class_list . '">';
 
-    foreach($result as $row) {
-        $open_child = '';
-        if (in_array($query['keyword'], $row) && $level > 0) $open_child = 'class="active"';
-        if (in_array($query['keyword'], $row) && $level == 0) $open_child = 'class="active current"';
-        echo '<li ' . $open_child . '><a href="search.php?submit=submit&amp;sort_by=id&amp;where=category&amp;sort_order=asc&amp;keyword=' . $row['id'] . '&amp;exact_phrase=on&amp;direct=true">' . $row['name'] . '</a>';
-        createMenu($row['id'], $level+1);
-        echo '</li>';
+        foreach($result as $row) {
+            $open_child = '';
+            if (in_array($query['keyword'], $row)) $open_child = 'class="active current"';
+
+            echo '<li ' . $open_child . '><a href="search.php?submit=submit&amp;sort_by=id&amp;where=category&amp;sort_order=asc&amp;keyword=' . $row['id'] . '&amp;exact_phrase=on&amp;direct=true">' . $row['name'] . '</a>';
+            createMenu($row['id'], $level+1);
+            echo '</li>';
+        }
+
+        if ($parent_id > 0) echo '</ul>';
     }
-
-    if ($parent_id > 0) echo '</ul>';
 }
 
 function in_array_r($needle, $haystack, $strict = false) {

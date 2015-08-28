@@ -74,6 +74,7 @@
 
     <script type='text/javascript' src='http://www.helsingborg.se/wp-content/themes/Helsingborg/js/app.js'></script>
     <script type='text/javascript' src='http://www.helsingborg.se/wp-content/themes/Helsingborg/js/dev/hbg.dev.js'></script>
+    <script src="templates/hbg/assets/js/main.js"></script>
     <script>
         $(document).ready(function () {
             $('.show-mobile-nav, .exit-off-canvas').on('click', function () {
@@ -82,8 +83,10 @@
             });
 
             $('.main-nav li.active').parents('ul').addClass('active');
-            $('.main-nav li.active').parents('li').last().addClass('current');
-            if ($('.main-nav .current').find('ul.submenu').length == 0) $('.main-nav .current').removeClass('current');
+            $('.main-nav li.active').parents('li').last().addClass('current-ancestor');
+            if ($('.main-nav .current').find('ul.submenu').length == 0) $('.main-nav li.active').parents('li').each(function () {
+                $(this).addClass('current-ancestor');
+            });
         });
     </script>
 </body>

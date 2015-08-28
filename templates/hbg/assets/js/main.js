@@ -1,1 +1,1 @@
-$('.main-nav li.active').parents('ul').addClass('active');
+$('.main-nav > ul > li .submenu').parent('li').addClass('has-childs');
