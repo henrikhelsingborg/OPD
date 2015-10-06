@@ -1,0 +1,251 @@
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model;
+     -moz-box-sizing: $box-model;
+          box-sizing: $box-model;
+}
+
+// ## Login
+.login {
+    text-align: center;
+
+    .logo {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .login-box {
+        text-align: left;
+        background: #fff;
+        padding: 20px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+
+        p + p {
+            margin-top: 15px
+        }
+    }
+}
+
+// ## Search
+.checkboxes {
+    margin-top: 10px !important;
+}
+
+// ## Core overrides
+.main-content {
+    padding-bottom: 50px;
+}
+
+.main-nav .main-nav-list li a {
+    padding-left: 0 !important;
+}
+
+.site-bg {
+    z-index: -1;
+}
+
+.main-site-container,
+.article-column {
+    min-height: 300px;
+}
+
+.sidebar-left {
+    margin-top: 130px;
+    padding-right: 30px;
+}
+
+.article-column {
+    padding: 0 30px;
+}
+
+a.button,
+button.button {
+    background-color: #cccccc;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    box-shadow: 2px 2px 1px 0 rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    color: #222222;
+    margin-bottom: 0;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+        text-deoration: none !important;
+    }
+}
+
+.article-column .alert {
+    margin: 0;
+}
+
+.article-column {
+    padding-bottom: 20px;
+}
+
+select, textarea {
+    margin: 0 0 1rem;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+}
+
+// ## DataTables
+.dataTables_wrapper {
+    .table-filter-info {
+        color: #555;
+        font-size: 10pt;
+        margin-top: 6px !important;
+    }
+
+    .table-filter-search {
+        text-align: right;
+        input {
+            padding: 8px 10px;
+            height: auto;
+            width: 90%;
+            @box-sizing(border-box);
+            float: right;
+            border-radius: 4px;
+        }
+    }
+
+    .table-footer {
+        margin-top: 20px;
+    }
+
+    .table-filter-length {
+        select {
+            padding: 5px;
+            height: auto;
+            width: 70px;
+            border-radius: 4px;
+            margin: 0 5px;
+        }
+    }
+
+    .dataTables_filter {
+        width: 100% !important;
+    }
+
+    .no-margin {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.dataTables_length {
+    width: 100% !important;
+}
+
+.paging_full_numbers a.paginate_button, .paging_full_numbers a.paginate_active {
+    border-radius: 4px;
+    background-color: #fcfcfc;
+    border: 1px solid #ddd !important;
+    font-size: 11pt;
+    padding: 6px 10px !important;
+
+    &:hover {
+        background-color: #ED8B00 !important;
+        border-color: #ED8B00 !important;
+        color: #fff !important;
+    }
+}
+
+.paging_full_numbers a.paginate_button {
+    background: #fcfcfc !important;
+}
+
+.dataTables_paginate {
+    float: right;
+}
+
+.paginate_button {
+    margin-left: 5px;
+}
+
+// ## Table
+table {
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+table thead {
+    background: #fff;
+}
+
+tr.odd,
+tr.even {
+    background: inherit;
+}
+
+table.display td {
+    padding: 6px 10px;
+}
+
+tr.odd td.sorting_1, {
+    background-color: #f8f8f8;
+}
+
+tr.even td.sorting_1 {
+    background-color: #f3f3f3;
+}
+
+
+table.display thead th {
+    border-bottom: 1px solid #ddd;
+}
+
+.row.admin {
+    margin-bottom: 40px;
+}
+
+.admin-settings {
+    small {
+        text-transform: none;
+    }
+}
+
+.ui-multiselect {
+    margin-bottom: 10px
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.side-nav {
+    .side-nav-heading {
+        padding: 0.545rem 0.875rem;
+        border-bottom: 1px solid #D7D7D7;
+        background: #f9f9f9;
+    }
+
+    li {
+        margin: 0
+    }
+}
+
+.button.organge {
+    background-color: rgb(237,139,0) !important;
+    border: 1px solid rgb(237,139,0) !important;
+    color: #FFF !important;
+}
+
+.input-field {
+    border: 2px solid rgb(237,139,0) !important;
+}
+
+.alert-box {
+    padding: 8px 15px;
+}
+
+.alert-box:not(#lastmessage) {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 350px;
+    height: auto;
+}

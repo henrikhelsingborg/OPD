@@ -1031,7 +1031,7 @@ function createMenu($parent_id = null, $level = 0) {
     if ($parent_id > 0 && !$open) $class_list .= 'level-' . $level . ' ';
     if ($parent_id > 0 && $open) $class_list .= 'active ';
     if (count($result) > 0) {
-        $class_list .= 'submenu ';
+        $class_list .= 'sub-menu ';
 
         if ($parent_id > 0) echo '<ul class="' . $class_list . '">';
 
