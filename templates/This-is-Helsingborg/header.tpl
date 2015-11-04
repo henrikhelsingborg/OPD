@@ -8,7 +8,7 @@
 
     <title>{$g_title} - {$page_title}</title>
 
-    <link rel='stylesheet'  href='http://helsingborg.dev/wp-content/themes/This-is-Helsingborg/assets/css/dist/app.min.css?ver=4.3.1' type='text/css' media='all' />
+    <link rel='stylesheet'  href='http://www.helsingborg.se/wp-content/themes/This-is-Helsingborg/assets/css/dist/app.min.css?ver=4.3.1' type='text/css' media='all' />
 
     <link rel="icon" href="http://helsingborg.se/wp-content/themes/Helsingborg/assets/img/icons/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://helsingborg.se/wp-content/themes/This-is-Helsingborg/assets/images/icons/apple-touch-icon-144x144-precomposed.png">
@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="columns large-12">
                         <a href="/" class="logotype" data-tooltip="focus">
-                            <img src="http://helsingborg.dev/wp-content/themes/This-is-Helsingborg/assets/images/helsingborg.svg" alt="Helsingborg Stad">
+                            <img src="http://www.helsingborg.se/wp-content/themes/This-is-Helsingborg/assets/images/helsingborg.svg" alt="Helsingborg Stad">
                             <span class="tooltip" style="width:131px;">
                                 Gå till startsidan
                             </span>
@@ -57,7 +57,7 @@
                         </nav>
 
                         <a href="/" class="logotype logotype-mobile">
-                            <img src="http://helsingborg.dev/wp-content/themes/This-is-Helsingborg/assets/images/helsingborg.svg" alt="Helsingborg Stad">
+                            <img src="http://www.helsingborg.se/wp-content/themes/This-is-Helsingborg/assets/images/helsingborg.svg" alt="Helsingborg Stad">
                         </a>
 
                         <button class="btn btn-mobile-menu" data-action="toggle-mobile-menu"><i class="hbg-hamburger"></i><span>Meny</span></button>

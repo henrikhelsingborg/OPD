@@ -11,7 +11,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="columns large-3">
-                            <a href="/" class="logotype"><img src="http://helsingborg.dev/wp-content/themes/This-is-Helsingborg/assets/images/helsingborg-neg.svg" alt="Helsingborg Stad"></a>
+                            <a href="/" class="logotype"><img src="http://www.helsingborg.se/wp-content/themes/This-is-Helsingborg/assets/images/helsingborg-neg.svg" alt="Helsingborg Stad"></a>
                         </div>
                     </div>
                     <div class="row">
