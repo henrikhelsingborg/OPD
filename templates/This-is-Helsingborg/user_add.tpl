@@ -64,16 +64,12 @@
                         <div class="columns large-12">
                             <div class="form-group">
                                 <label class="form-label">{$g_lang_label_email_address}</label>
-                                <select name="department" class="form-control">
-                                    {foreach from=$department_list item=item name=department_list}
-                                    <option value={$item.id}>{$item.name}</option>
-                                    {/foreach}
-                                </select>
+                                <input name="Email" type="text" class="required email" maxlength="50">
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" style="display:none;">
                         <div class="columns large-12">
                             <div class="form-group">
                                 <label class="form-label">{$g_lang_label_department}</label>
@@ -106,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" style="display:none;">
                         <div class="columns large-12">
                             <div class="form-group">
                                 <label class="form-label">{$g_lang_label_reviewer_for}</label>
