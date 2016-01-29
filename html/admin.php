@@ -2,7 +2,6 @@
     <h1>Administration: Vad vill du göra?</h1>
 
     <div class="row admin">
-        <?php if($user_obj->isRoot()) : ?>
         <div class="large-3 columns left">
             <div class="panel radius no-padding">
                 <ul class="side-nav no-padding">
@@ -14,9 +13,7 @@
                 </ul>
             </div>
         </div>
-        <?php endif; ?>
 
-        <?php if($user_obj->isRoot()) : ?>
         <!--
         <div class="large-3 columns left">
             <div class="panel radius no-padding">
@@ -30,9 +27,6 @@
             </div>
         </div>
         -->
-        <?php endif; ?>
-
-        <?php if($user_obj->isRoot()) : ?>
         <div class="large-3 columns left">
             <div class="panel radius no-padding">
                 <ul class="side-nav no-padding">
@@ -44,9 +38,7 @@
                 </ul>
             </div>
         </div>
-        <?php endif; ?>
 
-        <?php if($user_obj->isRoot()) : ?>
         <div class="large-3 columns left">
             <div class="panel radius no-padding">
                 <ul class="side-nav no-padding">
@@ -61,12 +53,12 @@
                 </ul>
             </div>
         </div>
-        <?php endif; ?>
+
         <div class="clearfix"></div>
     </div>
 
+    <?php if($user_obj->isRoot()) : ?>
     <div class="row admin">
-        <?php if($user_obj->isRoot()) : ?>
         <div class="large-3 columns left">
             <div class="panel radius no-padding">
                 <ul class="side-nav no-padding">
@@ -76,9 +68,7 @@
                 </ul>
             </div>
         </div>
-        <?php endif; ?>
 
-        <?php if($user_obj->isRoot()) : ?>
         <div class="large-3 columns left">
             <div class="panel radius no-padding">
                 <ul class="side-nav no-padding">
@@ -88,7 +78,7 @@
                 </ul>
             </div>
         </div>
-        <?php endif; ?>
         <div class="clearfix"></div>
     </div>
+    <?php endif; ?>
 </div>
